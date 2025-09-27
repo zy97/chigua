@@ -2,6 +2,7 @@
 name = "chigua"
 version = "0.1.0"
 edition = "2024"
+repository = "https://github.com/zy97/chigua"
 
 [dependencies]
 axum = { version = "0.8.4" }
