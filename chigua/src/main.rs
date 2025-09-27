@@ -1,9 +1,4 @@
-use axum::{
-    Json, Router, extract,
-    http::StatusCode,
-    response::{Html, IntoResponse},
-    routing::get,
-};
+use axum::{Json, Router, extract, http::StatusCode, response::IntoResponse, routing::get};
 use serde::Serialize;
 
 #[tokio::main]
@@ -12,9 +7,7 @@ async fn main() {
     let app = Router::new().route("/chigua/{name}", get(get_chigua_url));
 
     // run it
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
-        .await
-        .unwrap();
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     println!("listening on {}", listener.local_addr().unwrap());
     axum::serve(listener, app).await.unwrap();
 }
