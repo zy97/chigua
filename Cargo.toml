@@ -6,3 +6,8 @@ edition = "2024"
 [dependencies]
 axum = { version = "0.8.4" }
 tokio = { version = "1.47.1", features = ["full"] }
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
