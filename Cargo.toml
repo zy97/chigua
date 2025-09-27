@@ -1,14 +1,7 @@
-[package]
-name = "chigua"
-version = "0.1.0"
-edition = "2024"
-repository = "https://github.com/zy97/chigua"
-
-[dependencies]
-axum = { version = "0.8.4" }
-tokio = { version = "1.47.1", features = ["full"] }
-serde = { version = "1.0.227", features = ["derive"] }
-serde_json = "1.0.145"
+[workspace]
+members = ["chigua"]
+default-members = ["chigua"]
+resolver = "1"
 
 # The profile that 'dist' will build with
 [profile.dist]

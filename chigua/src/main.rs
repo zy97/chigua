@@ -25,9 +25,13 @@ async fn handler() -> Html<&'static str> {
     Html("<h1>Hello, World </h1>")
 }
 async fn get_chigua_url(extract::Path(name): extract::Path<String>) -> impl IntoResponse {
-    let chigua_urls = include_str!("../chigua.json");
+    // Load the JSON file and parse it
+    let json_file =
+        std::fs::read_to_string("chigua.json").expect("Failed to read chigua_urls.json");
+    let chigua_urls: serde_json::Value =
+        serde_json::from_str(&json_file).expect("Failed to parse JSON");
     let chigua_map: std::collections::HashMap<String, String> =
-        serde_json::from_str(chigua_urls).unwrap();
+        serde_json::from_value(chigua_urls).unwrap();
     let response = Response {
         url: chigua_map.get(&name).cloned().unwrap_or_default(),
     };
